@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Rock, Paper, Scissors game</title>
+		<script src="./app.js"></script>
+		<script src="./inputFilter.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="./favicon.ico" />
+	</head>
+	<body
+		onload="document.querySelector('input[type=radio]:checked').checked = false"
+	>
+		<div id="welcome">
+			<label for="roundNumber"
+				><span>Welcome to ROCK, PAPER, SCISSORS!</span>
+				<p>How many rounds do you want to play?</p></label
+			>
+			<div id="welcomeInputs">
+				<input
+					type="text"
+					id="roundNumber"
+					name="roundNumber"
+					value="0"
+					tabindex="1"
+					maxlength="2"
+				/>
+				<button id="ok" tabindex="2" onclick="getStarted()">OK</button>
+			</div>
+		</div>
+		<main>
+			<h1>Rock, Paper, Scissors, the game!</h1>
+			<h2 id="roundHeader"></h2>
+
+			<fieldset>
+				<legend id="enquiry"></legend>
+				<div class="container">
+					<div>
+						<input
+							type="radio"
+							id="rock"
+							name="userInput"
+							value="rock"
+							onclick="userChoice='rock'"
+						/>
+						<label for="rock">The mighty all powerful - ROCK!</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							id="paper"
+							name="userInput"
+							value="paper"
+							onclick="userChoice='paper'"
+						/>
+						<label for="paper">The tender ever so engulfing - PAPER!</label>
+					</div>
+					<div>
+						<input
+							type="radio"
+							id="scissors"
+							name="userInput"
+							value="scissors"
+							onclick="userChoice='scissors'"
+						/>
+						<label for="scissors">The sazzy, spicy, gigachad - SCISSORS!</label>
+					</div>
+				</div>
+				<button id="inputChoice" type="submit" onclick="submit()">
+					Smash your epic choice
+				</button>
+			</fieldset>
+			<div id="playedContainer"><div id="played"></div></div>
+			<div id="gameState">
+				<span>Your Score: <span id="yourScore">0</span> </span>
+				<span class="rounds">ROUND #<span id="displayRound">0</span> </span>
+				<span>AI Score: <span id="aiScore">0</span></span>
+			</div>
+			<button type="reset" onclick="document.location.reload(true)">
+				Restart
+			</button>
+		</main>
+	</body>
+	<script>
+		waitForRounds();
+		document.getElementById(
+			"enquiry"
+		).innerText = `What do you chose for round ${roundNumber + 1}?`;
+		setInputFilter(
+			document.getElementById("roundNumber"),
+			function (value) {
+				return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+			},
+			"Only digits and '.' are allowed"
+		);
+	</script>
+</html>
