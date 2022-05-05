@@ -26,6 +26,11 @@
 	display: flex;
 	flex-direction: row;
 }
+#welcome div,
+#welcome span,
+#welcome p {
+	margin: 2rem;
+}
 #roundNumber {
 	width: 3rem;
 	height: 4rem;
@@ -35,32 +40,39 @@
 	font-size: 2rem;
 }
 h1 {
-	margin: 2rem 0 4rem 0;
+	margin: 2rem 0 3rem 0;
 	text-align: center;
 }
 h2,
 p {
-	margin: 2rem;
+	text-align: center;
+}
+h2 {
+	margin-bottom: 3rem;
+}
+legend {
+	font-size: 1.2rem;
+	font-weight: bold;
 	text-align: center;
 }
 
 fieldset {
 	margin: 0 auto;
-	width: max-content;
 	padding: 0 10rem;
-	text-align: left;
-	max-width: 100%;
+	min-width: 100%;
+	font-size: 1.3rem;
 }
 .container {
 	display: flex;
 	width: 100%;
-	justify-content: space-around;
+	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
 	margin: 1rem;
 }
 .container div {
 	margin: 1rem 2rem;
+	text-align: center;
 }
 #inputChoice {
 	padding: 1rem;
@@ -69,15 +81,17 @@ fieldset {
 }
 #playedContainer {
 	display: flex;
-	margin: 1rem;
-	width: 100%;
+	margin: 2rem;
+	max-width: 100%;
 	height: 6rem;
 	align-items: center;
 	justify-content: center;
 }
 #played {
 	text-align: center;
-	height: fit-content;
+	height: 100%;
+	font-size: 1.3rem;
+	line-height: 1.9rem;
 }
 #gameEnd {
 	text-align: center;
@@ -95,9 +109,28 @@ button[type="reset"] {
 }
 #gameState {
 	display: flex;
+	text-align: center;
 	width: 100%;
 	height: 4rem;
 	/* visibility: hidden; */
 	align-items: center;
 	justify-content: space-evenly;
+	font-size: 2rem;
+}
+@media screen and (max-width: 700px) {
+	html {
+		font-size: 12px;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	html {
+		font-size: 10px;
+	}
+	.container div input {
+		width: 200px;
+	}
+	#gameState {
+		font-size: 1.7rem;
+	}
 }

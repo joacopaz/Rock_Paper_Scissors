@@ -115,8 +115,12 @@ const submit = () => {
         document.getElementById('played').innerHTML = (`${determineRoundWinner(userChoice,aiChoice)}`)
         updateState();
     } else {
-        if (gameFinished) {
-            document.getElementById('played').innerHTML = (`You already played all the rounds. <br><br>The game has ended. <br><br> The score is ${userScore} for you and ${aiScore} for the AI.`)
+        if (gameFinished && userScore > aiScore) {
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>CONGRATULATIONS! YOU WON!`);
+        } else if (gameFinished && aiScore > userScore) {
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>F, you've lost :(`);
+        } else if (gameFinished) {
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>ITS A TIE :O`)
         }
     }
     if (roundsToPlay > roundNumber) {
@@ -137,23 +141,17 @@ const waitForRounds = () => {
         if (roundsToPlay === 1) {
             document.getElementById(
                 "roundHeader"
-            ).innerText = `Lets play ${roundsToPlay} round of Rock, Paper, Scissors`;
+            ).innerText = `- ${roundsToPlay} round -`;
         } else {
             document.getElementById(
                 "roundHeader"
-            ).innerText = `Lets play ${roundsToPlay} rounds of Rock, Paper, Scissors`;
+            ).innerText = `- ${roundsToPlay} rounds -`;
         }
     } else {
         setTimeout(waitForRounds, 250);
     }
 }
 
-
-
-// Prompt for the declaration of the amount of rounds
-// while (roundsToPlay <= 0 || roundsToPlay === undefined) {
-//     roundsToPlay = prompt("How many rounds do you want to play?", "0");
-// }
 let roundsToPlay;
 let userScore = 0;
 let aiScore = 0;

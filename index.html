@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>Rock, Paper, Scissors game</title>
+		<title>Rock, Paper, Scissors</title>
 		<script src="./app.js"></script>
 		<script src="./inputFilter.js"></script>
 		<link rel="stylesheet" href="style.css" />
@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<main>
-			<h1>Rock, Paper, Scissors, the game!</h1>
+			<h1>ROCK PAPER SCISSORS</h1>
 			<h2 id="roundHeader"></h2>
 
 			<fieldset>
@@ -92,9 +92,9 @@
 		setInputFilter(
 			document.getElementById("roundNumber"),
 			function (value) {
-				return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+				return /^\d*\*?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
 			},
-			"Only digits and '.' are allowed"
+			"Only digits are allowed"
 		);
 	</script>
 </html>
