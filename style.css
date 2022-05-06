@@ -55,12 +55,35 @@ legend {
 	font-weight: bold;
 	text-align: center;
 }
-
+#inputSection {
+	max-width: 90vw;
+	margin: 0 auto;
+}
 fieldset {
 	margin: 0 auto;
-	padding: 0 10rem;
+	padding: 0 8rem;
 	min-width: 100%;
+	max-width: 90vw;
 	font-size: 1.3rem;
+}
+
+.inputButton {
+	padding: 1rem;
+	outline: rgba(0, 0, 0, 0) solid 1px;
+	background-color: rgba(240, 255, 255, 0);
+	transition: outline 700ms ease-out, color 200ms ease-out,
+		background-color 200ms ease-out;
+	border-radius: 30px;
+	caret-color: rgba(0, 0, 0, 0);
+}
+main {
+	display: none;
+}
+.inputButton:hover {
+	background-color: rgba(161, 238, 238, 0.363);
+	outline: 1px rgb(11, 99, 188) solid;
+	color: rgb(11, 99, 188);
+	cursor: pointer;
 }
 .container {
 	display: flex;
@@ -102,20 +125,17 @@ button[type="reset"] {
 	padding: 0.5rem 1rem;
 	display: block;
 }
-#end {
-	margin: 3rem;
-	border: red solid 1px;
-	height: 0rem;
-}
 #gameState {
 	display: flex;
 	text-align: center;
 	width: 100%;
 	height: 4rem;
-	/* visibility: hidden; */
 	align-items: center;
 	justify-content: space-evenly;
 	font-size: 2rem;
+}
+#gameState > * {
+	padding: 1rem;
 }
 @media screen and (max-width: 700px) {
 	html {
@@ -130,7 +150,7 @@ button[type="reset"] {
 	.container div input {
 		width: 200px;
 	}
-	#gameState {
-		font-size: 1.7rem;
+	#gameState > * {
+		padding: 0.3rem;
 	}
 }

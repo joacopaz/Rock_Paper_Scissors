@@ -8,7 +8,7 @@ const getStarted = () => {
     roundsToPlay = document.getElementById("roundNumber").value;
     if (roundsToPlay > 0) {
         document.getElementById("welcome").style.display = "none";
-        document.getElementById("main").style.display = "contents";
+        document.getElementsByTagName("main")[0].style.display = "contents";
     }
 };
 
@@ -47,13 +47,13 @@ const determineRoundWinner = (user, ai) => {
     if ((user === 'rock' || user === 'paper' || user === 'scissors') && (ai === 'rock' || ai === 'paper' || ai === 'scissors')) {
         roundNumber++;
         if (user === ai) {
-            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br><br> It's a tie! `;
+            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br> It's a tie! `;
         } else if (user === 'rock' && ai === 'scissors' || user === 'paper' && ai === 'rock' || user === 'scissors' && ai === 'paper') {
             userScore++;
-            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br><br>Congratulations! You have won this round.`
+            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br>Congratulations! You have won this round.`
         } else {
             aiScore++;
-            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br><br>Bummer, you have lost this round.`
+            return `You chose ${user.toUpperCase()} and the AI chose ${ai.toUpperCase()}. <br>Bummer, you have lost this round.`
         }
     } else {
         return `This round is invalid, a choice was incorrect. You chose ${user.toUpperCase()} and the ai chose ${ai.toUpperCase()}. Please replay the round.`
@@ -62,38 +62,25 @@ const determineRoundWinner = (user, ai) => {
 
 // Update state of the game graphically
 const updateState = () => {
-    document.getElementById("displayRound").innerHTML = roundNumber;
-    document.getElementById("yourScore").innerHTML = userScore;
-    document.getElementById("aiScore").innerHTML = aiScore;
-    document.getElementById('displayRound').parentElement.style.fontSize = '2rem';
+    document.getElementById("displayRound").textContent = roundNumber;
+    document.getElementById("yourScore").textContent = userScore;
+    document.getElementById("aiScore").textContent = aiScore;
     // Styling the victory for easier identification
     if (userScore > aiScore) {
-        document.getElementById('yourScore').parentElement.style.fontSize = '1rem'
         document.getElementById('yourScore').parentElement.style.color = 'green'
         document.getElementById('yourScore').parentElement.style.border = 'green solid 2px'
-        document.getElementById('yourScore').parentElement.style.padding = '1rem'
-        document.getElementById('aiScore').parentElement.style.fontSize = '1rem'
         document.getElementById('aiScore').parentElement.style.color = 'red'
         document.getElementById('aiScore').parentElement.style.border = 'red solid 2px'
-        document.getElementById('aiScore').parentElement.style.padding = '1rem'
     } else if (aiScore > userScore) {
-        document.getElementById('aiScore').parentElement.style.fontSize = '1rem'
         document.getElementById('aiScore').parentElement.style.color = 'green'
         document.getElementById('aiScore').parentElement.style.border = 'green solid 2px'
-        document.getElementById('aiScore').parentElement.style.padding = '1rem'
-        document.getElementById('yourScore').parentElement.style.fontSize = '1rem'
         document.getElementById('yourScore').parentElement.style.color = 'red'
         document.getElementById('yourScore').parentElement.style.border = 'red solid 2px'
-        document.getElementById('yourScore').parentElement.style.padding = '1rem'
     } else {
-        document.getElementById('aiScore').parentElement.style.fontSize = '1rem'
         document.getElementById('aiScore').parentElement.style.color = 'green'
         document.getElementById('aiScore').parentElement.style.border = 'green solid 2px'
-        document.getElementById('aiScore').parentElement.style.padding = '1rem'
-        document.getElementById('yourScore').parentElement.style.fontSize = '1rem'
         document.getElementById('yourScore').parentElement.style.color = 'green'
         document.getElementById('yourScore').parentElement.style.border = 'green solid 2px'
-        document.getElementById('yourScore').parentElement.style.padding = '1rem'
     }
 
 }
@@ -102,11 +89,14 @@ const updateState = () => {
 const submit = () => {
     // Check if the choice has been made
     if (!userChoice) {
-        document.getElementById('played').innerHTML = (`<div style="color:red;font-size:2rem;"> Please make a choice. </div>`)
+        document.getElementById('played').textContent = (`
+        Please make a choice`);
+        document.getElementById('played').style.color = 'red';
         // Check if there are still rounds left to be played
     } else if (roundNumber < roundsToPlay) {
+        document.getElementById('played').style.color = '';
         // delete content on div
-        document.getElementById('played').innerHTML = null;
+        document.getElementById('played').textContent = null;
         // get user choice
         userChoice = getUserChoice(userChoice);
         // get ai choice
@@ -114,13 +104,20 @@ const submit = () => {
 
         document.getElementById('played').innerHTML = (`${determineRoundWinner(userChoice,aiChoice)}`)
         updateState();
+        // reset all buttons:
+        document.querySelector('input[type=radio]:checked').checked = false;
+        resetStyles()
+        userChoice = '';
     } else {
         if (gameFinished && userScore > aiScore) {
-            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>CONGRATULATIONS! YOU WON!`);
+            document.getElementById('played').style.color = 'green';
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br>CONGRATULATIONS! YOU WON!`);
         } else if (gameFinished && aiScore > userScore) {
-            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>F, you've lost :(`);
+            document.getElementById('played').style.color = 'red';
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br>F, you've lost :(`);
         } else if (gameFinished) {
-            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br><br>ITS A TIE :O`)
+            document.getElementById('played').style.color = '';
+            document.getElementById('played').innerHTML = (`The game ended ${userScore} for you and ${aiScore} for the AI.<br>ITS A TIE :O`)
         }
     }
     if (roundsToPlay > roundNumber) {
@@ -150,6 +147,21 @@ const waitForRounds = () => {
     } else {
         setTimeout(waitForRounds, 250);
     }
+}
+const styleSelection = (id) => {
+    document.getElementById(id).style.backgroundColor = 'rgba(161, 238, 238, 0.363)';
+    document.getElementById(id).style.outline = '1px rgb(11, 99, 188) solid';
+    document.getElementById(id).style.color = 'rgb(11, 99, 188)';
+    resetStyles();
+
+
+}
+const resetStyles = () => {
+    document.querySelectorAll('input[type=radio]:not(:checked)').forEach(e => {
+        e.parentElement.style.backgroundColor = '';
+        e.parentElement.style.outline = '';
+        e.parentElement.style.color = '';
+    })
 }
 
 let roundsToPlay;

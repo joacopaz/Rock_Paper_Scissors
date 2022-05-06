@@ -12,7 +12,8 @@
 		<link rel="icon" href="./favicon.ico" />
 	</head>
 	<body
-		onload="document.querySelector('input[type=radio]:checked').checked = false"
+		onload="if(document.querySelector('input[type=radio]:checked')!= null){document.querySelector('input[type=radio]:checked').checked = false
+		}"
 	>
 		<div id="welcome">
 			<label for="roundNumber"
@@ -31,48 +32,60 @@
 				<button id="ok" tabindex="2" onclick="getStarted()">OK</button>
 			</div>
 		</div>
-		<main>
+		<main id="#main">
 			<h1>ROCK PAPER SCISSORS</h1>
 			<h2 id="roundHeader"></h2>
 
-			<fieldset>
-				<legend id="enquiry"></legend>
-				<div class="container">
-					<div>
-						<input
-							type="radio"
-							id="rock"
-							name="userInput"
-							value="rock"
-							onclick="userChoice='rock'"
-						/>
-						<label for="rock">The mighty all powerful - ROCK!</label>
+			<section id="inputSection">
+				<fieldset>
+					<legend id="enquiry"></legend>
+					<div class="container">
+						<label for="rock" style="cursor: pointer"
+							><div id="input1" class="inputButton">
+								<input
+									type="radio"
+									id="rock"
+									name="userInput"
+									value="rock"
+									onclick="userChoice='rock', styleSelection('input1')"
+								/>
+								<p>- The mighty all powerful -</p>
+								ROCK!
+							</div></label
+						>
+						<label for="paper" style="cursor: pointer"
+							><div id="input2" class="inputButton">
+								<input
+									type="radio"
+									id="paper"
+									name="userInput"
+									value="paper"
+									onclick="userChoice='paper', styleSelection('input2')"
+								/>
+								<p>- The tender ever engulfing -</p>
+								PAPER!
+							</div></label
+						>
+						<label for="scissors" style="cursor: pointer"
+							><div id="input3" class="inputButton">
+								<input
+									type="radio"
+									id="scissors"
+									name="userInput"
+									value="scissors"
+									onclick="userChoice='scissors', styleSelection('input3')"
+								/>
+								<p>- The sazzy, spicy, gigachad -</p style="margin-bottom:
+									1rem">
+								SCISSORS!
+							</div></label
+						>
 					</div>
-					<div>
-						<input
-							type="radio"
-							id="paper"
-							name="userInput"
-							value="paper"
-							onclick="userChoice='paper'"
-						/>
-						<label for="paper">The tender ever so engulfing - PAPER!</label>
-					</div>
-					<div>
-						<input
-							type="radio"
-							id="scissors"
-							name="userInput"
-							value="scissors"
-							onclick="userChoice='scissors'"
-						/>
-						<label for="scissors">The sazzy, spicy, gigachad - SCISSORS!</label>
-					</div>
-				</div>
-				<button id="inputChoice" type="submit" onclick="submit()">
-					Smash your epic choice
-				</button>
-			</fieldset>
+					<button id="inputChoice" type="submit" onclick="submit()">
+						Smash your epic choice
+					</button>
+				</fieldset>
+			</section>
 			<div id="playedContainer"><div id="played"></div></div>
 			<div id="gameState">
 				<span>Your Score: <span id="yourScore">0</span> </span>
