@@ -6,10 +6,10 @@
 
 const getStarted = () => {
     roundsToPlay = document.getElementById("roundNumber").value;
-    if (roundsToPlay > 0) {
-        document.getElementById("welcome").style.display = "none";
-        document.getElementsByTagName("main")[0].style.display = "contents";
-    }
+    if (roundsToPlay < 1) return
+    document.getElementById("welcome").style.display = "none";
+    document.getElementsByTagName("main")[0].style.display = "contents";
+
 };
 
 // Define a function that receives the user input
@@ -150,10 +150,9 @@ const waitForRounds = () => {
 }
 const styleSelection = (id) => {
     document.getElementById(id).style.backgroundColor = 'rgba(161, 238, 238, 0.363)';
-    document.getElementById(id).style.outline = '1px rgb(11, 99, 188) solid';
+    document.getElementById(id).style.outline = '2px rgb(11, 99, 188) solid';
     document.getElementById(id).style.color = 'rgb(11, 99, 188)';
     resetStyles();
-
 
 }
 const resetStyles = () => {

@@ -3,6 +3,14 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+label {
+	position: relative;
+}
+main {
+	display: none;
+}
+
 .input-error {
 	outline: 1px solid red;
 }
@@ -67,24 +75,91 @@ fieldset {
 	font-size: 1.3rem;
 }
 
+.container label[for="rock"]::before {
+	content: "";
+	position: absolute;
+	height: 5rem;
+	width: 5rem;
+	top: 130%;
+	left: 40%;
+	opacity: 0;
+	background-image: url(./rock.png);
+	background-color: white;
+	border: rgb(212, 212, 213) solid 1px;
+	border-radius: 50%;
+	background-position: center;
+	background-size: cover;
+	z-index: 11;
+	transition: all 200ms ease-out;
+	pointer-events: none;
+}
+.container label[for="rock"]:hover::before {
+	opacity: 100;
+	transform: scale(2);
+}
+.container label[for="scissors"]::before {
+	content: "";
+	position: absolute;
+	height: 5rem;
+	width: 5rem;
+	top: 130%;
+	left: 40%;
+	opacity: 0;
+	background-image: url(./scissors.png);
+	background-color: white;
+	border: rgb(212, 212, 213) solid 1px;
+	border-radius: 50%;
+	background-position: center;
+	background-size: cover;
+	z-index: 11;
+	transition: all 200ms ease-out;
+	pointer-events: none;
+}
+.container label[for="paper"]:hover::before {
+	opacity: 100;
+	transform: scale(2);
+}
+.container label[for="paper"]::before {
+	content: "";
+	position: absolute;
+	height: 5rem;
+	width: 5rem;
+	top: 130%;
+	left: 40%;
+	opacity: 0;
+	background-image: url(./paper.png);
+	background-color: white;
+	border: rgb(212, 212, 213) solid 1px;
+	border-radius: 50%;
+	background-position: center;
+	background-size: cover;
+	z-index: 11;
+	transition: all 200ms ease-out;
+	pointer-events: none;
+}
+.container label[for="scissors"]:hover::before {
+	opacity: 100;
+	transform: scale(2);
+}
+
 .inputButton {
 	padding: 1rem;
 	outline: rgba(0, 0, 0, 0) solid 1px;
 	background-color: rgba(240, 255, 255, 0);
 	transition: outline 700ms ease-out, color 200ms ease-out,
-		background-color 200ms ease-out;
+		background-color 200ms ease-out, transform 200ms ease-out;
 	border-radius: 30px;
 	caret-color: rgba(0, 0, 0, 0);
 }
-main {
-	display: none;
-}
+
 .inputButton:hover {
-	background-color: rgba(161, 238, 238, 0.363);
 	outline: 1px rgb(11, 99, 188) solid;
 	color: rgb(11, 99, 188);
 	cursor: pointer;
+	transform: scale(1.2);
+	z-index: 10;
 }
+
 .container {
 	display: flex;
 	width: 100%;
