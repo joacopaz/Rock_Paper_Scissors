@@ -1,27 +1,24 @@
-* {
+/* Global styles */
+
+*,
+*::before,
+*::after {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
 
-label {
-	position: relative;
-}
-main {
-	display: none;
+html {
+	text-align: center;
+	font-family: "Indie Flower", cursive;
+	font-size: 18px;
 }
 
-.input-error {
-	outline: 1px solid red;
-}
-#ok {
-	width: 3rem;
-	height: 4rem;
-}
-#welcome {
+/* Landing Screen */
+
+.landing {
 	display: flex;
 	flex-direction: column;
-	text-align: center;
 	position: relative;
 	bottom: 8rem;
 	width: 100%;
@@ -30,52 +27,93 @@ main {
 	justify-content: center;
 	font-size: 3rem;
 }
-#welcomeInputs {
-	display: flex;
-	flex-direction: row;
+.input-error {
+	outline: 1px solid red;
 }
-#welcome div,
-#welcome span,
-#welcome p {
-	margin: 2rem;
-}
-#roundNumber {
+.landing-input button {
 	width: 3rem;
 	height: 4rem;
+}
+
+.landing-input {
+	display: flex;
+	flex-direction: row;
+	transform: translateY(100%);
+}
+.landing-input [name="roundNumber"] {
 	text-align: center;
-}
-#welcome p {
 	font-size: 2rem;
+	width: 3rem;
+	height: 4rem;
 }
+.landing-input div,
+.landing-input span,
+.landing-input p {
+	margin: 2rem;
+}
+
+/* Main content header */
+
+main {
+	display: none;
+}
+
 h1 {
 	margin: 2rem 0 3rem 0;
-	text-align: center;
 }
-h2,
-p {
-	text-align: center;
-}
+
 h2 {
 	margin-bottom: 3rem;
 }
-legend {
-	font-size: 1.2rem;
-	font-weight: bold;
-	text-align: center;
-}
-#inputSection {
-	max-width: 90vw;
+
+/* Input section */
+
+.selection-container {
+	max-width: 95vw;
 	margin: 0 auto;
 }
 fieldset {
 	margin: 0 auto;
-	padding: 0 8rem;
-	min-width: 100%;
-	max-width: 90vw;
 	font-size: 1.3rem;
 }
+legend {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 0 0 0 15vw;
+}
+.container {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
+}
+label {
+	position: relative;
+}
 
-.container label[for="rock"]::before {
+.container .input-button {
+	padding: 0.2rem;
+	outline: rgba(0, 0, 0, 0) solid 1px;
+	background-color: rgba(240, 255, 255, 0);
+	transition: outline 700ms ease-out, color 200ms ease-out,
+		background-color 200ms ease-out, transform 200ms ease-out;
+	border-radius: 30px;
+	caret-color: rgba(0, 0, 0, 0);
+	margin: 2rem 4rem;
+	width: fit-content;
+	min-width: fit-content;
+}
+
+.container .input-button:hover {
+	outline: 1px rgb(11, 99, 188) solid;
+	color: rgb(11, 99, 188);
+	cursor: pointer;
+	transform: scale(1.2);
+	z-index: 10;
+}
+
+/* Obsolete code commented, used to create a hovering image (pseudo-element) representing the user choice, obsolete due to mobile compatibility but left in for education purposes */
+/* .container label[for="rock"]::before {
 	content: "";
 	position: absolute;
 	height: 5rem;
@@ -83,6 +121,7 @@ fieldset {
 	top: 130%;
 	left: 40%;
 	opacity: 0;
+	margin: 0 auto;
 	background-image: url(./rock.png);
 	background-color: white;
 	border: rgb(212, 212, 213) solid 1px;
@@ -140,44 +179,89 @@ fieldset {
 .container label[for="scissors"]:hover::before {
 	opacity: 100;
 	transform: scale(2);
-}
+} */
 
-.inputButton {
-	padding: 1rem;
-	outline: rgba(0, 0, 0, 0) solid 1px;
-	background-color: rgba(240, 255, 255, 0);
-	transition: outline 700ms ease-out, color 200ms ease-out,
-		background-color 200ms ease-out, transform 200ms ease-out;
-	border-radius: 30px;
-	caret-color: rgba(0, 0, 0, 0);
-}
-
-.inputButton:hover {
-	outline: 1px rgb(11, 99, 188) solid;
-	color: rgb(11, 99, 188);
-	cursor: pointer;
-	transform: scale(1.2);
-	z-index: 10;
-}
-
-.container {
+.container .user-input {
+	height: 10rem;
+	width: 10rem;
+	border: rgb(212, 212, 213) solid 1px;
+	border-radius: 50%;
+	position: relative;
 	display: flex;
-	width: 100%;
-	justify-content: center;
-	flex-wrap: wrap;
 	align-items: center;
-	margin: 1rem;
+	justify-content: center;
 }
-.container div {
-	margin: 1rem 2rem;
-	text-align: center;
-}
-#inputChoice {
-	padding: 1rem;
-	margin: 1rem;
+.container .user-input img {
+	position: absolute;
 	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	opacity: 0%;
+	transition: opacity 1s;
+	z-index: 1000;
 }
-#playedContainer {
+
+.container .ai-input {
+	height: 10rem;
+	width: 10rem;
+	border: rgb(212, 212, 213) solid 1px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Submit button */
+
+.submit-choice {
+	font-size: 1rem;
+	color: #382b22;
+	text-transform: uppercase;
+	padding: 1.25em 2em;
+	background: #fff0f0;
+	border: 2px solid #b18597;
+	border-radius: 0.75em;
+	transform-style: preserve-3d;
+	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+		background 150ms cubic-bezier(0, 0, 0.58, 1);
+	font-family: "Alfa Slab One", cursive;
+}
+.submit-choice::before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #f9c4d2;
+	border-radius: inherit;
+	box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+	transform: translate3d(0, 0.75em, -1em);
+	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+		box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+.submit-choice:hover {
+	background: #ffe9e9;
+	transform: translate(0, 0.25em);
+}
+.submit-choice:hover::before {
+	box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+	transform: translate3d(0, 0.5em, -1em);
+}
+.submit-choice:active {
+	background: #ffe9e9;
+	transform: translate(0em, 0.75em);
+}
+.submit-choice:active::before {
+	box-shadow: 0 0 0 2px #b18597, 0 0 #ffe3e2;
+	transform: translate3d(0, 0, -1em);
+}
+
+/* Game state section */
+
+.played-state-container {
 	display: flex;
 	margin: 2rem;
 	max-width: 100%;
@@ -185,31 +269,26 @@ fieldset {
 	align-items: center;
 	justify-content: center;
 }
-#played {
-	text-align: center;
+.played-state-container #played {
 	height: 100%;
 	font-size: 1.3rem;
 	line-height: 1.9rem;
 }
-#gameEnd {
-	text-align: center;
-	display: none;
-}
+
 button[type="reset"] {
 	margin: 3rem auto;
 	padding: 0.5rem 1rem;
 	display: block;
 }
-#gameState {
+.score-round-score {
 	display: flex;
-	text-align: center;
 	width: 100%;
-	height: 4rem;
+	height: fit-content;
 	align-items: center;
 	justify-content: space-evenly;
 	font-size: 2rem;
 }
-#gameState > * {
+.score-round-score > * {
 	padding: 1rem;
 }
 @media screen and (max-width: 700px) {
@@ -218,14 +297,20 @@ button[type="reset"] {
 	}
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
 	html {
 		font-size: 10px;
 	}
-	.container div input {
-		width: 200px;
-	}
 	#gameState > * {
 		padding: 0.3rem;
+	}
+	.container {
+		margin: 0 auto;
+	}
+	fieldset {
+		min-width: 100px;
+		padding: 0;
+		margin: 0 auto;
+		border: green solid 1px;
 	}
 }
