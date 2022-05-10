@@ -165,6 +165,7 @@ label {
 
 .submit-choice {
 	font-size: 1rem;
+	margin-top: 1rem;
 	color: #382b22;
 	text-transform: uppercase;
 	padding: 1.25em 2em;
@@ -236,7 +237,10 @@ button[type="reset"] {
 
 @media screen and (max-width: 500px) {
 	html {
-		font-size: 10px;
+		font-size: 13px;
+	}
+	.winner-declaration {
+		font-size: 1.1rem;
 	}
 	#gameState > * {
 		padding: 0.3rem;
