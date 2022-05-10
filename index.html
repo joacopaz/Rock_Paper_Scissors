@@ -6,8 +6,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<title>Rock, Paper, Scissors</title>
-		<script src="./app.js"></script>
-		<script src="./inputFilter.js"></script>
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="./favicon.ico" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,10 +91,16 @@
 						<div class="user-input">
 							<span>Your choice </span>
 							<img id="paper-image-user" src="./paper.png" alt="You chose paper">
-							<img id="rock-image-user" src="./rock.png" alt="You chose paper">
-							<img id="scissors-image-user" src="./scissors.png" alt="You chose paper">
+							<img id="rock-image-user" src="./rock.png" alt="You chose rock">
+							<img id="scissors-image-user" src="./scissors.png" alt="You chose scissors">
 						</div>
-						<div class="ai-input">AI choice</div>
+						<div class="winner-declaration"></div>
+						<div class="ai-input">
+						<span>AI choice</span>
+						<img id="paper-image-ai" src="./paper.png" alt="AI chose paper">
+						<img id="rock-image-ai" src="./rock.png" alt="AI chose rock">
+						<img id="scissors-image-ai" src="./scissors.png" alt="AI chose paper">
+						</div>
 					</div>
 					<button class="submit-choice"  tabindex="6" type="submit" onclick="submit()">
 						Smash your epic choice
@@ -104,7 +108,6 @@
 				</fieldset>
 			</section>
 			<section class="game-state">
-			<div class="played-state-container"><div id="played"></div></div>
 			<div class="score-round-score">
 				<span>Your Score: <span id="yourScore">0</span> </span>
 				<span class="rounds">ROUND #<span id="displayRound">0</span> </span>
@@ -115,16 +118,7 @@
 			</button>
 		</section>
 		</main>
+		<script src="./app.js"></script>
+		<script src="./inputFilter.js"></script>
 	</body>
-	<script>
-		waitForRounds();
-		setInputFilter(
-			document.querySelector('[name="roundNumber"]'),
-			function (value) {
-				return /^\d*\*?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
-			},
-			"Only digits are allowed"
-		);
-
-	</script>
 </html>

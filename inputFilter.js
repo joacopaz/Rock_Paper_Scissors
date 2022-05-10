@@ -25,3 +25,11 @@ function setInputFilter(textbox, inputFilter, errMsg) {
         });
     });
 }
+
+window.onload = setInputFilter(
+    document.querySelector('[name="roundNumber"]'),
+    function (value) {
+        return /^\d*\*?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+    },
+    "Only digits are allowed"
+);
